@@ -1,0 +1,24 @@
+name: npm trusted publish
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+          cache: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm install --global npm@11
+      - run: test "$GITHUB_REF_NAME" = "v$(cat VERSION)"
+      - run: npm ci --ignore-scripts && npm test
+      - run: sh scripts/build.sh
+      - run: npm publish --access public --provenance

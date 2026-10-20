@@ -1,0 +1,18 @@
+{
+  "name": "screen-cli",
+  "version": "0.4.0",
+  "description": "Develop dashboard drafts with local Coding Agents, authorized data and platform checks.",
+  "license": "UNLICENSED",
+  "repository": {"type": "git", "url": "git+https://github.com/GHOSTEDDIE/screen-cli.git"},
+  "homepage": "https://github.com/GHOSTEDDIE/screen-cli#readme",
+  "bugs": {"url": "https://github.com/GHOSTEDDIE/screen-cli/issues"},
+  "bin": {"screen-cli": "npm/bin/screen-cli.cjs"},
+  "files": ["npm/bin/", "npm/lib/", "skills/", "dist/screen-cli_*", "dist/manifest.json", "dist/SHA256SUMS", "README.md", "VERSION"],
+  "engines": {"node": ">=18"},
+  "scripts": {
+    "test": "node --test npm/test/*.test.cjs",
+    "prepack": "node scripts/check-package.cjs"
+  },
+  "publishConfig": {"access": "public", "registry": "https://registry.npmjs.org/"},
+  "keywords": ["cli", "dashboard", "codex", "claude-code", "screen-sdk"]
+}
