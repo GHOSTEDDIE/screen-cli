@@ -1,10 +1,7 @@
-# screen-cli 0.4.1
+# screen-cli 0.5.0
 
-新增 npm 独立安装方式：`npm install --global @ghostedd/screen-cli@0.4.1`。
+新增数据源凭证管理：credentials list、credentials preview --file -、credentials create --confirm。复用后台五种凭证类型、加密存储和域名隔离；预览不写入，确认绑定账号并在15分钟内生效，重复确认沿持久回执返回同一结果。
 
-- npm 包直接包含 macOS、Windows、Linux 的 x64/ARM64 二进制，安装不执行脚本，不额外从 GitHub 下载运行文件。
-- 启动时核对发布版本与当前平台二进制哈希，保留原 CLI 配置、浏览器授权与受限权限。
-- 使用 `screen-cli skill install --agent codex` 或 `--agent claude` 安装随包 Skill；更新保留其他 Skill 与用户修改。
-- 保留直接下载二进制、Skill ZIP 与 SHA256SUMS 的方式。发布仍由网页确认，CLI 不具有正式发布权限。
+密钥仅通过文件或标准输入提交，不进入列表、预览或回执。Skill 包含完整字段和来源引用方式。需要同步更新服务端的 /cli/v1/credentials 接口；CLI 不会自动部署服务器，原页面上传检查和网页发布流程保留。
 
-使用账号作用域 `@ghostedd/screen-cli`，避免 npm 相似包名保护冲突；可执行命令保持 `screen-cli`。
+安装或升级：npm install --global @ghostedd/screen-cli@0.5.0。升级后执行 screen-cli skill install --agent codex（Claude Code 使用 --agent claude）。

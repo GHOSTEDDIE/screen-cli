@@ -9,7 +9,7 @@
 需要 Node.js 18 或以上。npm 包直接携带六平台二进制与完整 Skill；无需 Go 编译器，不在安装时执行脚本或从 GitHub 下载运行文件。
 
 ```sh
-npm install --global @ghostedd/screen-cli@0.4.1
+npm install --global @ghostedd/screen-cli@0.5.0
 screen-cli --version
 screen-cli skill install --agent codex
 # Claude Code 使用：screen-cli skill install --agent claude
@@ -17,7 +17,7 @@ screen-cli config set --endpoint https://系统地址 --web-url https://网页�
 screen-cli auth login --account 用户名
 ```
 
-Skill 安装使用当前用户的 Agent 目录，支持 CODEX_HOME 与 CLAUDE_CONFIG_DIR。重复安装相同内容不改文件；官方版本可原子更新，已有自定义内容或其他 Skill 会保留并要求先核对。npm 包的本地 Skill 安装命令不扩大系统账号权限。需要一次性调用时可使用 `npx --yes --package=@ghostedd/screen-cli@0.4.1 screen-cli --version`。
+Skill 安装使用当前用户的 Agent 目录，支持 CODEX_HOME 与 CLAUDE_CONFIG_DIR。重复安装相同内容不改文件；官方版本可原子更新，已有自定义内容或其他 Skill 会保留并要求先核对。npm 包的本地 Skill 安装命令不扩大系统账号权限。需要一次性调用时可使用 `npx --yes --package=@ghostedd/screen-cli@0.5.0 screen-cli --version`。
 
 独立分发仓库：[GHOSTEDDIE/screen-cli](https://github.com/GHOSTEDDIE/screen-cli)。此仓库只包含客户端、Skill 与发布脚本，没有后台实现或私有配置。
 
@@ -45,6 +45,12 @@ Skill ZIP 内的 `screen-cli` 文件夹放入 Coding Agent 的技能目录，Cod
 `config set` 原子保存服务端和网页地址；`--endpoint` 与兼容参数 `--server` 同义，冲突时拒绝。`config show` 只返回地址、账号和凭据存在状态，不输出令牌。`auth login --account 用户名` 校验浏览器账号；错误账号不能消耗授权请求。`auth status` 从服务端读取实际身份；`auth logout` 撤销受限授权，已失效的授权也可清理本机凭据。网络不可达时暴露错误，避免误报远端已撤销。
 
 ## 开发流程
+
+### 新建数据源凭证
+
+先执行 `screen-cli credentials list` 查找已有凭证。缺少时执行 `screen-cli credentials preview --file -`，经标准输入提交与后台相同的凭证 JSON；核对返回的名称、类型和适用域名，再执行 `screen-cli credentials create --confirm <confirm_token>`。预览不写业务表，15分钟有效；创建与操作人回执同事务保存，重复确认返回首次结果。
+
+支持飞书多维表格/aPaaS 应用凭证和 HTTP Bearer、API Key、Basic。密钥加密保存，列表及回执不返回密钥；输入不要写入项目或命令行参数。完整字段与引用方式见 [Skill 命令参考](skills/screen-cli/references/commands.md#创建连接凭证)。数据库密码仍沿原来源连接流程。此能力需要同步更新后端，不会自动部署服务器或改变第三方授权。
 
 新增数据源可以全程通过 CLI 完成：
 
