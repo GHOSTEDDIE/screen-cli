@@ -17,7 +17,9 @@ if(fs.existsSync(marker))previous=JSON.parse(fs.readFileSync(marker,'utf8')).fil
 if(fs.existsSync(target)){
  const allowed=new Set([...Object.keys(previous),...files,'.screen-cli-export.json']);
  function inspect(relative=''){for(const entry of fs.readdirSync(path.join(target,relative),{withFileTypes:true})){
-  if(relative===''&&entry.name==='.git')continue;const name=relative?`${relative}/${entry.name}`:entry.name;
+  if(relative===''&&entry.name==='.git')continue;
+  if(relative===''&&['dist','node_modules','packages'].includes(entry.name)&&entry.isDirectory())continue;
+  const name=relative?`${relative}/${entry.name}`:entry.name;
   if(entry.isSymbolicLink())throw new Error('Destination links are not allowed');if(entry.isDirectory())inspect(name);else if(!allowed.has(name))throw new Error(`Unexpected destination file: ${name}`);
   else if(!check&&previous[name]&&digest(path.join(target,name))!==previous[name])throw new Error(`Destination has local edits: ${name}`);
  }}inspect();
