@@ -38,7 +38,7 @@ Windows 使用 `scripts/install.ps1 -From dist -BinDir "$env:LOCALAPPDATA\screen
 
 ## 后台下载与 Agent Skill
 
-后台「智能搭建 → 本机开发」按操作系统、处理器下载 CLI、Agent Skill ZIP 和校验和。当前版本随生产镜像构建六平台二进制；服务端不在请求期间编译。开发环境先运行 `sh cli/scripts/build.sh`，后端默认读取 `cli/dist`；也可用 `SCREEN_CLI_RELEASE_DIR` 指定发布目录。目录必须包含同一版本完整的 manifest、二进制、Skill 和校验和，缺失或变更时拒绝下载。下载接口要求正式网页登录，受限 CLI 令牌不能代替后台会话。
+后台「智能搭建 → 本机开发」优先提供 npm 安装命令和 Agent 安装提示词；「其他下载」保留六平台二进制、Agent Skill ZIP、校验和及手动安装说明。当前版本随生产镜像构建六平台二进制；服务端不在请求期间编译。开发环境先运行 `sh cli/scripts/build.sh`，后端默认读取 `cli/dist`；也可用 `SCREEN_CLI_RELEASE_DIR` 指定发布目录。目录必须包含同一版本完整的 manifest、二进制、Skill 和校验和，缺失或变更时拒绝下载。下载接口要求正式网页登录，受限 CLI 令牌不能代替后台会话。
 
 Skill ZIP 内的 `screen-cli` 文件夹放入 Coding Agent 的技能目录，Codex 为 `~/.codex/skills/`，Claude Code 为 `~/.claude/skills/`。它指导 Agent 由本机编写源码，通过 CLI 上传检查，不默认调用内置生成 Agent，也不直接改数据库或绕过网页发布。
 
@@ -91,7 +91,7 @@ screen-cli preview
 
 ```sh
 go test -race ./...
-sh scripts/build.sh --version 0.2.1
+sh scripts/build.sh
 ```
 
 该目录是独立 Go 模块，标准库即可构建。release 工作流只生成可下载的交付物；不会自动部署系统或发布用户页面。
