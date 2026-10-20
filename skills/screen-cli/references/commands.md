@@ -4,7 +4,7 @@
 
 ## 安装
 
-优先执行 `npm install --global screen-cli@0.4.0`，随后执行 `screen-cli skill install --agent codex`（Claude Code 改为 `--agent claude`）。npm 包自带二进制和 Skill，不需要 Go 或 GitHub 运行时下载。已有登录配置沿用，安装后执行 `screen-cli --version` 和 `screen-cli auth status` 核对。
+优先执行 `npm install --global @ghostedd/screen-cli@0.4.1`，随后执行 `screen-cli skill install --agent codex`（Claude Code 改为 `--agent claude`）。npm 包自带二进制和 Skill，不需要 Go 或 GitHub 运行时下载。已有登录配置沿用，安装后执行 `screen-cli --version` 和 `screen-cli auth status` 核对。
 
 无 npm 时，后台按操作系统和处理器下载 CLI、SHA256SUMS。macOS/Linux 用 `shasum -a 256 文件名` 或 `sha256sum 文件名` 对照校验，再将文件改名为 `screen-cli` 并 `chmod +x`，放入用户 PATH。Windows 用 `Get-FileHash 文件名 -Algorithm SHA256` 校验，改名为 `screen-cli.exe` 并加入用户 PATH。不需 Go、Node 或系统管理员权限。
 

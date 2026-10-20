@@ -1,6 +1,6 @@
 {
-  "name": "screen-cli",
-  "version": "0.4.0",
+  "name": "@ghostedd/screen-cli",
+  "version": "0.4.1",
   "description": "Develop dashboard drafts with local Coding Agents, authorized data and platform checks.",
   "license": "UNLICENSED",
   "repository": {"type": "git", "url": "git+https://github.com/GHOSTEDDIE/screen-cli.git"},

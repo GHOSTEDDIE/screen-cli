@@ -9,7 +9,7 @@
 需要 Node.js 18 或以上。npm 包直接携带六平台二进制与完整 Skill；无需 Go 编译器，不在安装时执行脚本或从 GitHub 下载运行文件。
 
 ```sh
-npm install --global screen-cli@0.4.0
+npm install --global @ghostedd/screen-cli@0.4.1
 screen-cli --version
 screen-cli skill install --agent codex
 # Claude Code 使用：screen-cli skill install --agent claude
@@ -17,7 +17,7 @@ screen-cli config set --endpoint https://系统地址 --web-url https://网页�
 screen-cli auth login --account 用户名
 ```
 
-Skill 安装使用当前用户的 Agent 目录，支持 CODEX_HOME 与 CLAUDE_CONFIG_DIR。重复安装相同内容不改文件；官方版本可原子更新，已有自定义内容或其他 Skill 会保留并要求先核对。npm 包的本地 Skill 安装命令不扩大系统账号权限。需要一次性调用时可使用 `npx --yes --package=screen-cli@0.4.0 screen-cli --version`。
+Skill 安装使用当前用户的 Agent 目录，支持 CODEX_HOME 与 CLAUDE_CONFIG_DIR。重复安装相同内容不改文件；官方版本可原子更新，已有自定义内容或其他 Skill 会保留并要求先核对。npm 包的本地 Skill 安装命令不扩大系统账号权限。需要一次性调用时可使用 `npx --yes --package=@ghostedd/screen-cli@0.4.1 screen-cli --version`。
 
 独立分发仓库：[GHOSTEDDIE/screen-cli](https://github.com/GHOSTEDDIE/screen-cli)。此仓库只包含客户端、Skill 与发布脚本，没有后台实现或私有配置。
 
